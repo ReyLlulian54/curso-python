@@ -1,31 +1,32 @@
 # Cómo hacer peticiones a APIs con Python
 # con y sin dependencias
 
-# 1. Sin dependencias (díficil y sin dependencias)
-import urllib.request
-import json
+# 1. Sin dependencias (DIFICIL y sin dependencias)
+import urllib.request #permite abrir una url
+import json #transforma la respuesta a json
 
 DEEPSEEK_API_KEY = "xxx"
 
-api_posts = "https://jsonplaceholder.typicode.com/posts/"
+api_posts = "https://jsonplaceholder.typicode.com/posts/" #esta es la api
 
 try:
-  response = urllib.request.urlopen(api_posts)
-  data = response.read()
-  json_data = json.loads(data.decode('utf-8'))
+  response = urllib.request.urlopen(api_posts) #abrimos la url
+  data = response.read()  #leemos la respuesta
+  json_data = json.loads(data.decode('utf-8')) #decodificamos la respuesta a json
   print(json_data)
-  response.close()
+  response.close() #cerramos la respuesta o la pestaña
 except urllib.error.URLError as e:
   print(f"Error en la solicitud: {e}")
 
 
-# 2. Con dependencia (requests)
+# 2. Con dependencia (requests) (FACIL)
 import requests
 
 print("\nGET:")
 api_posts = "https://jsonplaceholder.typicode.com/posts/"
 response = requests.get(api_posts)
 response_json = response.json()
+print(response_json[0]) #imprimimos el primer post
 
 # 3. Un POST
 print("\nPOST:")
@@ -41,7 +42,7 @@ try:
 except requests.exceptions.RequestException as e:
   print(f"Error en la solicitud: {e}")
 
-# 4. Un PUT
+# 4. Un PUT (actualizar) Put-> reemplaza todo el objeto, Patch-> actualiza solo los campos indicados
 print("\nPUT:")
 try:
   response = requests.put(
@@ -51,7 +52,6 @@ try:
       "body": "bar",
       "userId": 1,
     })
-
   print(response.status_code)
 except requests.exceptions.RequestException as e:
   print(f"Error en la solicitud: {e}")
@@ -79,7 +79,7 @@ def call_openai_gpt(api_key, prompt):
 
 api_response = call_openai_gpt(OPENAI_KEY, "Escribe un breve poema sobre la programación")
 
-# print(json.dumps(api_response, indent=2))
+# print(json.dumps(api_response, indent=2)) #ve la estructura de la respuesta
 
 print(api_response["choices"][0]["message"]["content"])
 

@@ -22,7 +22,7 @@ format_date = now.strftime("%A %B %Y %H:%M:%S")
 print(f"Fecha formateada: {format_date}")
 
 # 4. Operaciones con fechas (sumar/restar dias, minutos, horas, meses)
-yesterday = datetime.now() - timedelta(days=1)
+yesterday = datetime.now() - timedelta(days=5)
 print(f"Ayer: {yesterday}")
 
 tomorrow = datetime.now() + timedelta(days=1)
@@ -40,7 +40,7 @@ print(month)
 
 # 6. Calcular la diferencia entre 2 fechas
 date1 = datetime.now()
-date2 = datetime(2025, 2, 12, 15, 30, 0)
+date2 = datetime(2026, 3, 8, 12, 15, 0)
 difference = date2 - date1
 print(f"Diferencia entre las fechas: {difference}")
 

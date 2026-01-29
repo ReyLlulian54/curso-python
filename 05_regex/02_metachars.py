@@ -111,6 +111,9 @@ else: print("El correo no es válido")
 # EJERCICIO:
 # Tenemos una lista de archivos, necesitamos saber los nombres de los ficheros con extension .txt
 files = "file1.txt file2.pdf midu-of.webp secret.txt"
+pattern = r"\w+\.txt\b"
+found = re.findall(pattern, files)
+print(found)
 
 # \b: Coincide con el principio o final de una palabra
 text = "casa casada cosa cosas casado casa"
